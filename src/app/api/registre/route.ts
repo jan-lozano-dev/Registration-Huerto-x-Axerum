@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { isRateLimited } from "@/lib/rateLimit";
 
+const MAX_CAPACITY = 1000;
+
 export async function POST(request: NextRequest) {
   // Rate limit by IP — prevents spam registrations
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
@@ -61,6 +63,15 @@ export async function POST(request: NextRequest) {
     }
 
     const sql = getDb();
+
+    // Check capacity before running uniqueness queries
+    const [{ count }] = await sql`SELECT COUNT(*)::int AS count FROM registres`;
+    if (count >= MAX_CAPACITY) {
+      return NextResponse.json(
+        { message: "L'aforament és ple. Gràcies pel teu interès!" },
+        { status: 409 }
+      );
+    }
 
     const existingPhone = await sql`SELECT id FROM registres WHERE telefon = ${telefon}`;
     if (existingPhone.length > 0) {

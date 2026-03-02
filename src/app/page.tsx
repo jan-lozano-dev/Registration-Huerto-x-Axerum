@@ -8,8 +8,8 @@ function isValidSpanishPhone(phone: string): boolean {
   return /^[679]\d{8}$/.test(cleaned);
 }
 
-// Event time: March 12 2026 at 22:30 CET (UTC+1, before DST switch on March 29)
-const TARGET_DATE = new Date("2026-03-12T22:30:00+01:00").getTime();
+// Event time: March 12 2026 at 22:30 CET = 21:30 UTC (before DST switch on March 29)
+const TARGET_DATE = new Date("2026-03-12T21:30:00Z").getTime();
 
 function calcTimeLeft() {
   const diff = TARGET_DATE - Date.now();

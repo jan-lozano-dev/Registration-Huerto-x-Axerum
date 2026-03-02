@@ -38,3 +38,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Windows download metadata
+*.Zone.Identifier
+
+# Root-level image files (assets live in /public)
+/*.png
+/*.jpg
+/*.jpeg

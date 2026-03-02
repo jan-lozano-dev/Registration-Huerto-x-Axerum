@@ -8,7 +8,8 @@ function isValidSpanishPhone(phone: string): boolean {
   return /^[679]\d{8}$/.test(cleaned);
 }
 
-const TARGET_DATE = new Date("2026-03-12T00:00:00").getTime();
+// Event time: March 12 2026 at 22:30 CET (UTC+1, before DST switch on March 29)
+const TARGET_DATE = new Date("2026-03-12T22:30:00+01:00").getTime();
 
 function calcTimeLeft() {
   const diff = TARGET_DATE - Date.now();
@@ -236,7 +237,8 @@ export default function Home() {
                 setPhoneError(null);
               }}
               required
-              pattern="[0-9]*"
+              maxLength={12}
+              pattern="[0-9 ]*"
               className="w-full px-3 py-2 border border-white rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-500"
               placeholder="Escriu el teu número bé..."
             />

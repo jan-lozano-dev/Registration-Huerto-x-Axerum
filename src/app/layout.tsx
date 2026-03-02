@@ -30,9 +30,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Inscripció huerto",
-    description: "Huerto Carnaval 12/02",
-    images: ["https://huerto.info/og-image.jpg?v=2"],
     description: "Axerum Vilanova: 12/03, 22:30",
+    images: ["https://huerto.info/og-image.jpg?v=2"],
   },
 };
 

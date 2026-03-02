@@ -7,14 +7,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://huerto.info"),
   title: "Inscripció huerto",
-  description: "Huerto Carnaval 12/02",
+  description: "Axerum Vilanova: 12/03, 22:30",
   icons: {
     icon: "/Icon_website.png",
     apple: "/Icon_website.png",
   },
   openGraph: {
     title: "Inscripció huerto",
-    description: "Huerto Carnaval 12/02",
+    description: "Axerum Vilanova: 12/03, 22:30",
     url: "https://huerto.info",
     siteName: "Huerto",
     images: [
@@ -32,6 +32,7 @@ export const metadata: Metadata = {
     title: "Inscripció huerto",
     description: "Huerto Carnaval 12/02",
     images: ["https://huerto.info/og-image.jpg?v=2"],
+    description: "Axerum Vilanova: 12/03, 22:30",
   },
 };
 

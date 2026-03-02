@@ -8,28 +8,25 @@ function isValidSpanishPhone(phone: string): boolean {
   return /^[679]\d{8}$/.test(cleaned);
 }
 
+const TARGET_DATE = new Date("2026-03-12T00:00:00").getTime();
+
+function calcTimeLeft() {
+  const diff = TARGET_DATE - Date.now();
+  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((diff % (1000 * 60)) / 1000),
+  };
+}
+
 function Countdown() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  // Initialize with correct value immediately — avoids flash of zeros on first render
+  const [timeLeft, setTimeLeft] = useState(calcTimeLeft);
 
   useEffect(() => {
-    const targetDate = new Date("2026-03-12T00:00:00").getTime();
-
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000),
-        });
-      }
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
+    const interval = setInterval(() => setTimeLeft(calcTimeLeft()), 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -116,7 +113,7 @@ export default function Home() {
         body: JSON.stringify({
           nom: formData.nom,
           cognoms: formData.cognoms,
-          telefon: parseInt(formData.telefon, 10),
+          telefon: parseInt(formData.telefon.replace(/\s/g, ""), 10),
           email: formData.email,
           website: honeypotRef.current?.value ?? "",
         }),

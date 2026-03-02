@@ -14,18 +14,28 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { nom, cognoms, telefon, email, website } = body;
+    const { telefon, website } = body;
 
     // Honeypot: bots fill every visible field including hidden ones; humans never do
     if (website) {
       return NextResponse.json({ message: "Registre creat correctament" }, { status: 201 });
     }
 
+    // Trim text inputs to avoid dirty data and bypass attempts with padding
+    const nom = typeof body.nom === "string" ? body.nom.trim() : "";
+    const cognoms = typeof body.cognoms === "string" ? body.cognoms.trim() : "";
+    const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+
     if (!nom || !cognoms || telefon === undefined || !email) {
       return NextResponse.json(
         { message: "Tots els camps són obligatoris" },
         { status: 400 }
       );
+    }
+
+    // Enforce max lengths to prevent oversized payloads hitting the DB
+    if (nom.length > 100 || cognoms.length > 100 || email.length > 254) {
+      return NextResponse.json({ message: "Camp massa llarg." }, { status: 400 });
     }
 
     if (typeof telefon !== "number" || isNaN(telefon)) {
@@ -52,10 +62,18 @@ export async function POST(request: NextRequest) {
 
     const sql = getDb();
 
-    const existing = await sql`SELECT id FROM registres WHERE telefon = ${telefon}`;
-    if (existing.length > 0) {
+    const existingPhone = await sql`SELECT id FROM registres WHERE telefon = ${telefon}`;
+    if (existingPhone.length > 0) {
       return NextResponse.json(
         { message: "Número de telèfon ja inscrit.", code: "PHONE_EXISTS" },
+        { status: 409 }
+      );
+    }
+
+    const existingEmail = await sql`SELECT id FROM registres WHERE email = ${email}`;
+    if (existingEmail.length > 0) {
+      return NextResponse.json(
+        { message: "Correu electrònic ja inscrit.", code: "EMAIL_EXISTS" },
         { status: 409 }
       );
     }

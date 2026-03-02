@@ -119,6 +119,8 @@ export default function Home() {
         const error = await response.json();
         if (error.code === "PHONE_EXISTS") {
           setPhoneError(error.message);
+        } else if (error.code === "EMAIL_EXISTS") {
+          setEmailError(error.message);
         } else {
           setMessage({ type: "error", text: error.message || "Error en el registre" });
         }
@@ -176,6 +178,7 @@ export default function Home() {
               value={formData.nom}
               onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
               required
+              maxLength={100}
               className="w-full px-3 py-2 border border-white rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-500"
               placeholder="hola"
             />
@@ -191,6 +194,7 @@ export default function Home() {
               value={formData.cognoms}
               onChange={(e) => setFormData({ ...formData, cognoms: e.target.value })}
               required
+              maxLength={100}
               className="w-full px-3 py-2 border border-white rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-500"
               placeholder="Corre a apuntar-te..."
             />
@@ -231,6 +235,7 @@ export default function Home() {
                 setEmailError(null);
               }}
               required
+              maxLength={254}
               className="w-full px-3 py-2 border border-white rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-gray-500"
               placeholder="nom@exemple.com"
             />

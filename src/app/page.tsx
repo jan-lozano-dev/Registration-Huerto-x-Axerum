@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 function isValidSpanishPhone(phone: string): boolean {
@@ -73,6 +73,8 @@ export default function Home() {
   const [showFinalPhoto, setShowFinalPhoto] = useState(false);
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState<string | null>(null);
+  // Honeypot ref: hidden from real users, bots will fill it automatically
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,6 +109,7 @@ export default function Home() {
           cognoms: formData.cognoms,
           telefon: parseInt(formData.telefon, 10),
           email: formData.email,
+          website: honeypotRef.current?.value ?? "",
         }),
       });
 
@@ -235,6 +238,17 @@ export default function Home() {
               <p className="text-red-500 text-sm mt-1">{emailError}</p>
             )}
           </div>
+
+          {/* Honeypot: invisible to users, bots fill it and get silently rejected */}
+          <input
+            ref={honeypotRef}
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ display: "none" }}
+          />
 
           <p className="text-xs text-gray-400 text-center">
             Festa privada. +18.

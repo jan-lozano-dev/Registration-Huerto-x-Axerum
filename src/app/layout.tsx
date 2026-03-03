@@ -6,14 +6,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://huerto.info"),
-  title: "Inscripció huerto",
+  title: "Inscripció Huerto x Axerum",
   description: "Axerum Vilanova: 12/03, 22:30",
   icons: {
     icon: "/favicon-circle.png",
     apple: "/favicon-circle.png",
   },
   openGraph: {
-    title: "Inscripció huerto",
+    title: "Inscripció Huerto x Axerum",
     description: "Axerum Vilanova: 12/03, 22:30",
     url: "https://huerto.info",
     siteName: "Huerto",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Inscripció huerto",
+    title: "Inscripció Huerto x Axerum",
     description: "Axerum Vilanova: 12/03, 22:30",
     images: ["https://huerto.info/logoAxerumPetit.jpeg"],
   },

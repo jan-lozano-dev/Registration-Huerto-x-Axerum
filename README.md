@@ -1,13 +1,7 @@
 # Registration Huerto x Axerum
 
 ## Project Description
-Registration Huerto x Axerum is a comprehensive system designed to streamline the registration process for the Huerto project. It provides users with an easy-to-use interface to manage their registrations, view their progress, and access important project updates.
-
-## Features
-- User-friendly interface for registration and management.
-- Ability to track registration status.
-- Notifications for project updates and deadlines.
-- Secure user authentication and data storage.
+Registration Huerto x Axerum is a simple yet elegant form designed to streamline the registration process for a university party I organized with my team. This project was used by 392 students of my university. 
 
 ## Setup Instructions
 To set up the project locally, follow these steps:

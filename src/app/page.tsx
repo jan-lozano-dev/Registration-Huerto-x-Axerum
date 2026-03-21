@@ -178,8 +178,8 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-black p-4">
       <div className="w-full max-w-md bg-black border border-white rounded-lg p-8">
-        <h1 className="text-2xl font-bold text-center text-white mb-2">
-          Huerto x Axerum: 12/03, 22:30
+        <h1 className="text-2xl font-bold text-center mb-2" style={{ color: '#9eff00', fontFamily: '"Extenda 100 Yotta", sans-serif' }}>
+          Llista Convidats Huerto
         </h1>
 
         {message && (
@@ -305,10 +305,8 @@ export default function Home() {
           </button>
         </form>
       </div>
-      <p className="text-sm text-gray-400 text-center mt-4">
-        Entrada gratuïta abans de les 12 amb inscripció i carnet universitari<br />
-        2x1 en copes/birra abans de les 00:00<br />
-        Passades les 00:00, entrada 8€ amb una consumició
+      <p className="text-sm text-center mt-4" style={{ color: '#9eff00', fontFamily: '"Extenda 100 Yotta", sans-serif' }}>
+        més info per privat
       </p>
     </main>
   );

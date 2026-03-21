@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 
 function isValidSpanishPhone(phone: string): boolean {
   const cleaned = phone.replace(/\s/g, "");
@@ -171,17 +170,30 @@ export default function Home() {
 
   if (showFinalPhoto) {
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center bg-black p-4 scanline">
-        <div className="fade-up w-full max-w-sm">
-          <div style={{ border: '1px solid rgba(158,255,0,0.25)', boxShadow: '0 0 60px rgba(158,255,0,0.08)' }}>
-            <Image
-              src="/fotoAxerumGranFinal.jpeg"
-              alt="Registre completat"
-              width={500}
-              height={500}
-              className="max-w-full h-auto block"
-            />
+      <main className="min-h-screen flex flex-col items-center justify-center bg-black px-6 py-10 scanline">
+        <div className="fade-up flex flex-col items-center text-center">
+
+          {/* Pulsing rings */}
+          <div className="relative flex items-center justify-center mb-10" style={{ width: 160, height: 160 }}>
+            <span className="ripple-ring" style={{ width: 100, height: 100, animationDelay: '0s' }} />
+            <span className="ripple-ring" style={{ width: 100, height: 100, animationDelay: '0.85s' }} />
+            <span className="ripple-ring" style={{ width: 100, height: 100, animationDelay: '1.7s' }} />
+            <div style={{ position: 'relative', width: 76, height: 76, borderRadius: '50%', border: '2px solid #9eff00', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(158,255,0,0.04)', boxShadow: '0 0 32px rgba(158,255,0,0.2), inset 0 0 20px rgba(158,255,0,0.04)' }}>
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <path d="M5 15L12 22L25 8" stroke="#9eff00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
           </div>
+
+          {/* Title */}
+          <h1 className="flicker" style={{ fontFamily: '"Extenda 100 Yotta", sans-serif', color: '#9eff00', fontSize: 'clamp(2.5rem, 12vw, 5rem)', lineHeight: 0.88, letterSpacing: '-0.01em', textShadow: '0 0 60px rgba(158,255,0,0.25)', marginBottom: '1.25rem' }}>
+            REGISTRE<br />COMPLETAT
+          </h1>
+
+          <p style={{ color: 'rgba(158,255,0,0.7)', fontFamily: '"Extenda 100 Yotta", sans-serif', fontSize: '1.4rem', letterSpacing: '0.12em' }}>
+            Fins aviat!
+          </p>
+
           <Countdown />
         </div>
       </main>

@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   title: "Inscripció Huerto",
   description: "Boda en Huerto: 12/03, 22:30",
   icons: {
-    icon: "/logo2.jpg",
-    apple: "/logo2.jpg",
+    icon: "/logo2-circle.png",
+    apple: "/logo2-circle.png",
   },
   openGraph: {
     title: "Inscripció Huerto",

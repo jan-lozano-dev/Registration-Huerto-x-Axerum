@@ -372,7 +372,7 @@ export default function Home() {
 
       {/* Bottom text */}
       <p className="mt-6 fade-up" style={{ animationDelay: '280ms', color: '#9eff00', fontFamily: '"Extenda 100 Yotta", sans-serif', fontSize: '0.9rem', letterSpacing: '0.15em' }}>
-        més info per privat
+        27/03, més info per privat
       </p>
 
     </main>
